@@ -5,3 +5,6 @@ export { MyCamera } from './camera';
 export { Lights } from './lights';
 export { Resizer } from './resize';
 export { MyControl } from './control';
+export { Pick } from './pick';
+export { MyStats } from './stats';
+export { Mouse } from './mouse';
