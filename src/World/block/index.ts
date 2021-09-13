@@ -1,5 +1,5 @@
 import { Color, IcosahedronBufferGeometry, Mesh, ShaderMaterial, Vector3 } from "three";
-import { random, Tickable } from "../../shared";
+import { mainColor, random, Tickable } from "../../shared";
 import * as vertexShader from './vertexShader.vert';
 import * as fragmentShader from './fragmentShader.frag';
 import { Mouse } from "../system";
@@ -13,7 +13,7 @@ export class Block extends Mesh implements Tickable {
         fragmentShader,
         uniforms: {
           uMouse: { value: new Vector3() },
-          uColor: { value: new Color('rgb(25,200,225)') },
+          uColor: { value: new Color(mainColor) },
         }
       })
     );

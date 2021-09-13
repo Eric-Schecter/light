@@ -1,4 +1,4 @@
-import { Mesh, ShaderMaterial, SphereBufferGeometry, TextureLoader, Vector3 } from "three";
+import { CustomBlending, Mesh, OneFactor, ShaderMaterial, SphereBufferGeometry, TextureLoader, Vector3 } from "three";
 import { Tickable } from "../../shared";
 import * as vertexShader from './vertexShader.vert';
 import * as fragmentShader from './fragmentShader.frag';
@@ -14,9 +14,10 @@ export class Ball extends Mesh implements Tickable {
         uniforms: {
           uTexture: { value: null },
           uTime: { value: 0 },
-          lightIntensity: { value: 1 },
           uMouse: { value: new Vector3() },
         },
+        blending: CustomBlending,
+        blendSrc: OneFactor
       }),
     );
     new TextureLoader()

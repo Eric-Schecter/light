@@ -1,12 +1,13 @@
 import { Camera, Clock, Object3D, Scene, WebGLRenderer } from "three";
 import { Tickable } from "../../shared/types";
-import { MyControl } from "./control";
+import { Background } from "../background";
 
 export class Loop {
-  private pre = false;
   private clock = new Clock();
-  constructor(private renderer: WebGLRenderer, private scene: Scene, private camera: Camera, private control: MyControl,
-    private scenePick: Scene, private tickables: Tickable[]) { }
+  constructor(private renderer: WebGLRenderer, private scene: Scene, private camera: Camera,
+    private scenePick: Scene, private background: Background, private tickables: Tickable[]) {
+    this.renderer.autoClear = false;
+  }
   public start = () => {
     this.renderer.setAnimationLoop(() => {
       const delta = this.clock.getDelta();
@@ -20,11 +21,12 @@ export class Loop {
     this.scenePick.traverse((obj: Tickable | Object3D) => 'tick' in obj && obj.tick(delta));
   }
   private render = () => {
-    this.renderer.autoClear = true;
+    this.renderer.clear();
     this.renderer.render(this.scenePick, this.camera);
-    this.renderer.autoClear = false;
+    this.renderer.clear();
+    this.renderer.render(this.background, this.camera);
+    this.renderer.clearDepth();
     this.renderer.render(this.scene, this.camera);
-    
   }
   public stop = () => {
     this.renderer.setAnimationLoop(null);

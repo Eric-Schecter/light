@@ -10,7 +10,7 @@ export class Mouse implements Tickable {
   public get value() {
     return this._value;
   }
-  public set target(target: Vector3) {
-    this._target.copy(target);
+  public get target() {
+    return this._target;
   }
 }

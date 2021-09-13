@@ -7,10 +7,11 @@ in vec3 vPos;
 in vec3 vWPos;
 in vec3 vNormal;
 
+#include<diffusion.glsl>;
+
 void main()
 {
     vec4 texture=texture2D(uTexture,vUv);
-    vec3 lightDirection=normalize(uMouse-vWPos);
-    float diffusion=max(0.,dot(vNormal,lightDirection));
+    float diffusion=getDiffusion(uMouse,vNormal,vWPos);
     gl_FragColor=vec4(texture*diffusion);
 }

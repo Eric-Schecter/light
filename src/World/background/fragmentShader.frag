@@ -17,17 +17,17 @@ float getScatter(vec3 cameraPos,vec3 dir,vec3 lightPos,float d){
 
 void main()
 {
-    vec3 cameraToWorld = vWPos - cameraPosition;
-    vec3 cameraToWorldDir = normalize(cameraToWorld);
-    float cameraToWorldDistance = length(vPos - cameraPosition);
-    vec3 lightToWorld=normalize(uMouse-vWPos);
-    float diffusion=max(0.,dot(vNormal,lightToWorld));
+    vec3 cameraToWorld=vWPos-cameraPosition;
+    vec3 cameraToWorldDir=normalize(cameraToWorld);
+    float cameraToWorldDistance=length(vPos-cameraPosition);
+    // vec3 lightToWorld=normalize(uMouse-vWPos);
+    // float diffusion=max(0.,dot(vNormal,lightToWorld));
     // float dist=length(uMouse-vWPos);
-
+    
     // float ball = length(uMouse)<2.?1.:0.;
-
-    float scatter = getScatter(cameraPosition,cameraToWorldDir,uMouse,cameraToWorldDistance);
+    
+    float scatter=getScatter(cameraPosition,cameraToWorldDir,uMouse,cameraToWorldDistance);
     // float d=length(vPos)/4.;
-    float alpha = scatter;
-    gl_FragColor=vec4(uColor * alpha,1.);
+    float alpha=scatter;
+    gl_FragColor=vec4(uColor*alpha,1.);
 }

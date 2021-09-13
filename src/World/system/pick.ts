@@ -20,7 +20,7 @@ export class Pick {
     const intersect = this.raycaster.intersectObjects(this.scene.children);
     if (intersect.length) {
       const [first] = intersect;
-      this.mouse.target = first.point;
+      this.mouse.target.copy(first.point);
     }
   }
   private initEvents = () => {
