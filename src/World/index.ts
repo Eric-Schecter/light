@@ -1,5 +1,5 @@
 import { Cache, Object3D, Scene, WebGLRenderer } from 'three';
-import { Loop, MyRenderer, MyScene, MyCamera, Resizer, Lights, MyControl, Pick, MyStats, Mouse } from './system';
+import { Loop, MyRenderer, MyScene, MyCamera, Resizer, MyControl, Pick, MyStats, Mouse } from './system';
 import { Ball } from './ball';
 import { Block } from './block';
 import { Plane } from './plane';
@@ -10,7 +10,6 @@ export class World {
   private renderer: WebGLRenderer;
   private loop: Loop;
   private resizer: Resizer;
-  private lights: Lights;
   private control: MyControl;
 
   constructor(container: HTMLElement) {
@@ -25,11 +24,10 @@ export class World {
     new Pick(this.camera, canvas, scenePick,mouse);
     const assets = this.createAssets(mouse);
     this.resizer = new Resizer(this.renderer, this.camera, container);
-    this.lights = new Lights();
     const plane = new Plane(mouse,this.camera);
     scenePick.add(plane);
     const stats = new MyStats(container);
-    this.scene.add(...assets, ...this.lights.instance, this.camera);
+    this.scene.add(...assets, this.camera);
     this.control = new MyControl(this.camera, canvas);
     this.loop = new Loop(this.renderer, this.scene, this.camera, this.control, scenePick, [this.control, stats,mouse]);
     this.loop.start();

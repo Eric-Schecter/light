@@ -25,5 +25,6 @@ export class Ball extends Mesh implements Tickable {
   public tick = (delta: number) => {
     (this.material as ShaderMaterial).uniforms.uTime.value += delta;
     (this.material as ShaderMaterial).uniforms.uMouse.value.copy(this.mouse.value);
+    this.rotation.y += delta;
   }
 }

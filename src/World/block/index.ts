@@ -18,7 +18,7 @@ export class Block extends Mesh implements Tickable {
       })
     );
     const range = 5;
-    this.position.set(random(-range, range), random(-range, range), random(-range * 2, range * 2));
+    this.position.set(random(-range, range), random(-range, range), random(-range, range));
   }
   public tick = (delta: number) => {
     this.position.y = (this.position.y + 5 + delta) % 20 - 5;

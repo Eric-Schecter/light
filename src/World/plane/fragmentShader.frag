@@ -5,14 +5,6 @@ in vec3 vPos;
 in vec3 vWPos;
 in vec3 vNormal;
 
-// void main()
-// {
-//     float d1=length(uMouse-vPos);
-//     float d2=length(vPos)/4.;
-//     float d=min(d1,d2);
-//     gl_FragColor=vec4(uColor,1.-d);
-// }
-
 float getScatter(vec3 cameraPos,vec3 dir,vec3 lightPos,float d){
     vec3 q=cameraPos-lightPos;
     float b=dot(dir,q);
