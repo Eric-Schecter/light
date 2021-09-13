@@ -20,14 +20,8 @@ void main()
     vec3 cameraToWorld=vWPos-cameraPosition;
     vec3 cameraToWorldDir=normalize(cameraToWorld);
     float cameraToWorldDistance=length(vPos-cameraPosition);
-    // vec3 lightToWorld=normalize(uMouse-vWPos);
-    // float diffusion=max(0.,dot(vNormal,lightToWorld));
-    // float dist=length(uMouse-vWPos);
-    
-    // float ball = length(uMouse)<2.?1.:0.;
-    
     float scatter=getScatter(cameraPosition,cameraToWorldDir,uMouse,cameraToWorldDistance);
-    // float d=length(vPos)/4.;
-    float alpha=scatter;
+    float d=length(vPos)/30.;
+    float alpha=max(scatter,d);
     gl_FragColor=vec4(uColor*alpha,1.);
 }
